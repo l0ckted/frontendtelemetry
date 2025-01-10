@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+
+    <!-- Pantalla de carga -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Barra de navegación superior -->
+    <nav>
+        <img src="images/logosSDT.PNG" alt="Logo" class="logo">
+        <a href="index.html" class="logout">Cerrar sesión</a>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <!-- Menú lateral -->
+        <aside class="sidebar">
+            <ul>
+             <!--   <li><a href="act-agricolas.html">Actividades agrícolas</a></li> -->
+              <!--  <li><a href="task-personal.html">Tareas del personal</a></li> -->
+              <!--  <li><a href="#">Control de riego</a></li> -->
+              <!--    <li><a href="#">Control de fertilización</a></li> -->
+                <li><a href="graficoshumedadsuelo.html">Seguimiento de Riego por Fechas </a></li>
+
+            </ul>
+        </aside>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="welcome">
+                <h1>Bienvenido al Dashboard</h1>
+                <p>Gestiona y monitorea tus operaciones de campo con datos y análisis en tiempo real.</p>
+            </div>
+
+            <div class="card">
+                <h3>Análisis de Datos por Fechas y Sensores Seleccionados</h3>
+                
+                <!-- Instrucciones de uso -->
+                <div id="instructions" style="margin-bottom: 20px; font-size: 14px; color: #555;">
+                    <p><strong>Instrucciones de uso:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Selecciona</strong> la fecha y hora de inicio y fin.</li>
+                        <li><strong>Elige</strong> el sensor que deseas analizar.</li>
+                        <li><strong>Haz clic</strong> en "Cargar Base de Datos" para cargar los datos.</li>
+                        <li><strong>Haz clic</strong> en "Graficar Datos" para visualizar el gráfico.</li>
+                        <li><strong>Si deseas</strong> analizar otras fechas o un sensor diferente, haz clic en "Restablecer Datos", selecciona las nuevas fechas y sensor, y repite el proceso.</li>
+                    </ol>
+                </div>
+            
+                <div class="controls">
+                    <div class="date-picker">
+                        <label for="startDate">Fecha y Hora de Inicio:</label>
+                        <input type="datetime-local" id="startDate" name="fechaInicio">
+                
+                        <label for="endDate">Fecha y Hora de Fin:</label>
+                        <input type="datetime-local" id="endDate" name="fechaFin">
+                    </div>
+                    <div class="sensor-picker">
+                        <label for="sensorSelect">Seleccionar Sensor:</label>
+                        <select id="sensorSelect" multiple>
+                            <!-- Opciones se llenarán dinámicamente -->
+                        </select>
+                    </div>
+                    <button id="analyzeDataButton">Cargar Base de Datos </button>
+                    <div id="errorMensaje" style="color: red; margin-top: 10px;"></div>
+                    <button id="graficardata">Graficar Datos </button>
+                    <button id="eliminarDBBtn">Restablecer Datos </button>
+                </div>
+                <div id="graficosContainer">
+                    <!-- Aquí se generarán los gráficos dinámicamente -->
+                    <canvas id="selectedDataChart"></canvas>
+                </div>
+                <div id="loadingMessage" style="display: none;">Cargando datos...</div>
+            </div>
+            
+
+                <!-- Tarjeta 2: Gráficos de Datos -->
+                <div class="card">
+                    <h3>Análisis de Datos por Fechas y Sensores Seleccionados</h3>
+                    <div id="graficosContainer"></div>
+                    <canvas id="selectedDataChart"></canvas>
+                </div>
+
+                <!-- Tarjeta 3: Resumen de Rendimiento -->
+                <div class="card">
+                    <h3>Resumen de Rendimiento</h3>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Alertas y Notificaciones -->
+                <div class="card">
+                    <h3>Alertas y Notificaciones</h3>
+                    <ul id="alertsList">
+                        <li>No hay alertas actuales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Soil Desert Technologies Spa. Todos los derechos reservados.
+    </footer>
+
+    <!-- Agregar Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script src="scripts/cargargraficoshs.js"></script>
+    <script src="scripts/token.js"></script>
+    <!-- Chart.js Zoom Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <!-- Chart.js Annotation Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="scripts/logout.js"></script>
+    <script src="scripts/graficosfecha.js"></script>
+
+</body>
+</html>

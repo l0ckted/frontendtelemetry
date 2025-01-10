@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <link rel="stylesheet" href="styles/contact.css">
+    <style>
+        .loading {
+            display: none;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .result-success {
+            color: green;
+            font-weight: bold;
+        }
+        .result-error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Soil Desert Technologies</h1>
+        <p>Regístrate para más información</p>
+    </header>
+
+    <!-- Contact Form -->
+    <main>
+        <div class="form-wrapper">
+            <h2>Formulario de Contacto</h2>
+            <p>Déjanos tus datos y nos pondremos en contacto contigo para brindarte más información sobre nuestras soluciones IoT para la agricultura.</p>
+            
+            <form id="contactForm">
+                <label for="name">Nombre Completo:</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Tu email" required>
+
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Tu número de teléfono" required>
+
+                <label for="company">Empresa:</label>
+                <input type="text" id="company" name="company" placeholder="Nombre de la empresa">
+
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" placeholder="Cuéntanos en qué estás interesado" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            <p id="result" class="result"></p>
+            <p id="loading" class="loading">Enviando...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Soil Desert Technologies Spa. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const company = document.getElementById('company').value;
+            const message = document.getElementById('message').value;
+
+            // Mostrar indicador de carga
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                const response = await fetch('/api/auth/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, phone, company, message })
+                });
+
+                const data = await response.json();
+                
+                // Ocultar indicador de carga
+                document.getElementById('loading').style.display = 'none';
+
+                if (response.ok) {
+                    document.getElementById('result').textContent = '¡Formulario enviado correctamente! Nos pondremos en contacto contigo pronto.';
+                    document.getElementById('result').className = 'result-success';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    document.getElementById('result').textContent = data.message || 'Error al enviar el formulario.';
+                    document.getElementById('result').className = 'result-error';
+                }
+            } catch (error) {
+                // Ocultar indicador de carga
+                document.getElementById('loading').style.display = 'none';
+                
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+                document.getElementById('result').className = 'result-error';
+            }
+        });
+    </script>
+
+</body>
+</html>

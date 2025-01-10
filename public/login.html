@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="images/logosSDT.png" alt="Company Logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="login-wrapper">
+            <!-- IoT Technology Description -->
+            <div class="iot-description">
+                <h2>Empoderando la Agricultura con IoT</h2>
+                <p>Nuestro sensor IoT capta humedad, temperatura y conductividad del suelo para optimizar el uso hídrico en los cultivos.</p>
+                <h2>Soil Desert Technologies</h2>
+                <p>Fundada en 2023, Soil Desert Technologies ofrece una plataforma de monitoreo y gestión agronómica para mejorar la eficiencia agrícola.</p>
+            </div>
+            <!-- Image and Login Form -->
+            <div class="image-container">
+                <img src="images/fotosportada1.jpg" alt="Illustration">
+            </div>
+            <div class="login-container">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    
+                    <label for="contrasena">Password:</label>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                    
+                    <!-- CSRF Token -->
+                    <input type="hidden" id="csrfToken" name="csrfToken">
+                    
+                    <button type="submit">Login</button>
+                </form>
+                <p id="result"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Soildeserttechnologies Spa. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Función para sanitizar los datos de entrada
+        function sanitizeInput(input) {
+            // Remover caracteres especiales que podrían ser usados en un ataque XSS
+            return input.replace(/<script.*?>.*?<\/script>/gi, '')  // Eliminar etiquetas <script> si hay
+                       .replace(/<\/?[a-z][\s\S]*>/gi, '')  // Eliminar cualquier etiqueta HTML
+                       .replace(/[\x00-\x1F\x7F-\x9F]/g, '');  // Eliminar caracteres de control no deseados
+        }
+
+        async function login() {
+            const email = sanitizeInput(document.getElementById('email').value);
+            const contrasena = sanitizeInput(document.getElementById('contrasena').value);
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, contrasena }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Almacenar los datos de sesión en el localStorage
+                    localStorage.setItem('auth_token', data.token);
+                    localStorage.setItem('sessionData', JSON.stringify(data.sessionData));
+
+                    // Mostrar un mensaje solo si el inicio de sesión es exitoso
+                    console.log('Inicio de sesión exitoso');
+                    alert('Inicio de sesión exitoso.');
+
+                    // Redirigir al dashboard
+                    window.location.href = '/dashboard.html'; // Cambiar '/dashboard' por la ruta real del dashboard
+                } else {
+                    // Mostrar un mensaje en caso de error en las credenciales
+                    console.error('Error al iniciar sesión:', data.message);
+                    alert('Credenciales incorrectas. Por favor, verifica tu correo y contraseña.');
+                }
+            } catch (error) {
+                console.error('Error de red:', error);
+                alert('Hubo un problema al intentar iniciar sesión. Intenta de nuevo más tarde.');
+            }
+        }
+
+        // Llamar a la función de login cuando se haga submit en el formulario
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            login();
+        });
+    </script>
+</body>
+</html>

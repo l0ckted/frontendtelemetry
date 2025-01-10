@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="styles/register.css">
+    <!-- Incluye el token CSRF en un meta tag o desde una cookie -->
+    <meta name="csrf-token" content="{{csrfToken}}"> <!-- Asegúrate de que el token se inserte correctamente -->
+</head>
+<>
+    <div class="container">
+        <header>
+            <img src="images/logosSDT.png" alt="Logo de la empresa" class="logo">
+            <h1>Registro de Usuario</h1>
+        </header>
+        <div class="form-container">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Ingrese su email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                    <!-- El token CSRF se insertará en el encabezado de la solicitud -->
+                    <input type="hidden" id="csrfToken" name="csrfToken">
+                </div>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/register.js">
+    </script>
+    <script src="scripts/crsf.js"></script>
+</body>
+</html>

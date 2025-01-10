@@ -1,0 +1,183 @@
+/* General Body Style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Color de fondo principal */
+    color: #333; /* Color de texto */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #363831; /* Color de fondo del header */
+    padding: 10px 20px;
+    border-bottom: 2px solid #494949; /* Línea verde */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #363831; /* Color de fondo de la barra de navegación */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    height: 50px;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: 20px;
+}
+
+nav .nav-links a {
+    color: #658004; /* Color de los enlaces en la barra de navegación */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav .nav-links a:hover {
+    color: #048016; /* Color de los enlaces al pasar el ratón */
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #e0f2f1; /* Fondo verde claro */
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #048016; /* Color del título */
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: #048016; /* Color del texto */
+    margin-bottom: 20px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.cta-button, .cta-button-secondary {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.cta-button {
+    background-color: #048016; /* Botón principal */
+    color: white;
+}
+
+.cta-button-secondary {
+    background-color: #048016; /* Botón secundario */
+    color: white;
+}
+
+.hero-image img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Features Section */
+.features {
+    padding: 50px;
+    background-color: #ffffff; /* Fondo blanco */
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #048016; /* Color del título */
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.feature {
+    background-color: #b7dfb2; /* Fondo verde claro más suave */
+    padding: 20px;
+    border-radius: 8px;
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #048016; /* Color del título */
+}
+
+.feature p {
+    font-size: 1em;
+    color: #666; /* Color del texto */
+}
+
+/* Call to Action Section */
+.cta-section {
+    text-align: center;
+    background-color: #b7dfb2; /* Fondo verde oscuro */
+    color: #048016;
+    padding: 40px;
+}
+
+.cta-section h2 {
+    font-size: 2em;
+}
+
+.cta-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.cta-button-large {
+    padding: 15px 30px;
+    background-color: #4f995a; /* Botón grande */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #2d2d2d; /* Fondo oscuro */
+    color: #468004; /* Color del texto */
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #658004; /* Línea verde */
+    border-radius: 0 0 10px 10px; /* Esquinas redondeadas en el footer */
+}

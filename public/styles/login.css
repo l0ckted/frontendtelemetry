@@ -1,0 +1,128 @@
+/* General Body Style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Color de fondo principal */
+    color: #ffffff; /* Color de texto */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #363831;
+    padding: 10px 20px;
+    border-bottom: 2px solid #c4e812; /* Línea verde */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+/* IoT Description */
+.iot-description {
+    flex: 1;
+    padding: 40px;
+    background-color: #f9f9f9; /* Fondo blanco */
+    color: #363831;
+    text-align: left;
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+.iot-description h2 {
+    color: #8ca50d; /* Título en verde */
+    margin-bottom: 20px;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-wrapper {
+    display: flex;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+.image-container img {
+    width: 400px; /* Escala la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de aspecto */
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+.login-container {
+    flex: 1;
+    padding: 40px;
+    background-color: #f9f9f9; /* Fondo gris claro */
+    color: #363831;
+    border-radius: 10px; /* Esquinas redondeadas */
+}
+
+.login-container h1 {
+    color: #8ca50d;;
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #363831;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #c4e812;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #363831;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px; /* Esquinas redondeadas */
+    background-color: #c4e812;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #b0d70f;
+}
+
+/* Footer */
+footer {
+    background-color: #2d2d2d;
+    color: #c4e812;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #c4e812;
+    border-radius: 0 0 10px 10px; /* Esquinas redondeadas en el footer */
+}
