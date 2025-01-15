@@ -126,3 +126,63 @@ footer {
     border-top: 2px solid #c4e812;
     border-radius: 0 0 10px 10px; /* Esquinas redondeadas en el footer */
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .login-wrapper {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .iot-description h2 {
+        font-size: 1.2rem;
+    }
+
+    .iot-description p {
+        font-size: 0.9rem;
+    }
+
+    .image-container img {
+        width: 80%;
+        max-width: 400px;
+    }
+
+    .login-container h1 {
+        font-size: 1.8rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    button {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-wrapper {
+        padding: 10px;
+    }
+
+    .iot-description h2 {
+        font-size: 1rem;
+    }
+
+    .iot-description p {
+        font-size: 0.8rem;
+    }
+
+    .image-container img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .login-container h1 {
+        font-size: 1.6rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    button {
+        font-size: 0.8rem;
+    }
+}
