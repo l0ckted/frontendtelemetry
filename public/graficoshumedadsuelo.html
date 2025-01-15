@@ -15,7 +15,10 @@
 
     <!-- Barra de navegación superior -->
     <nav>
-        <img src="images/logosSDT.png" alt="Company Logo">
+        <img src="images/logosSDT.png" alt="Company Logo" width="200" height="100">
+        <p style="font-size: 14px; color: #999999; font-style: italic; margin: 0;">
+            Innovación en soluciones de biotecnología para la agricultura. Trabajamos con tecnologías de vanguardia para mejorar el rendimiento del campo.
+        </p>
         <a href="index.html" class="logout">Cerrar sesión</a>
     </nav>
 
@@ -27,7 +30,7 @@
               <!--  <li><a href="task-personal.html">Tareas del personal</a></li> -->
               <!--  <li><a href="#">Control de riego</a></li> -->
               <!--    <li><a href="#">Control de fertilización</a></li> -->
-                <li><a href="graficoshumedadsuelo.html">Seguimiento de Riego por Fechas </a></li>
+             <!--   <li><a href="graficoshumedadsuelo.html">Seguimiento de Riego por Fechas </a></li> -->
                 <li><a href="dashboard.html">Dashboard Seguimiento </a></li>
 
             </ul>
@@ -89,27 +92,28 @@
                     <canvas id="selectedDataChart"></canvas>
                 </div>
 
-                <!-- Tarjeta 3: Resumen de Rendimiento -->
+                <!-- Tarjeta 3: Resumen de Rendimiento 
                 <div class="card">
                     <h3>Resumen de Rendimiento</h3>
                     <div class="chart-container">
                         <canvas id="performanceChart"></canvas>
                     </div>
-                </div>
+                </div> -->
 
-                <!-- Tarjeta 4: Alertas y Notificaciones -->
+                <!-- Tarjeta 4: Alertas y Notificaciones 
                 <div class="card">
                     <h3>Alertas y Notificaciones</h3>
                     <ul id="alertsList">
                         <li>No hay alertas actuales.</li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 
-    <footer>
-        &copy; 2024 Soil Desert Technologies Spa. Todos los derechos reservados.
+    <footer style="background-color: #2e3236; color: #4CAF50; text-align: center; padding: 15px;">
+        &copy; 2024 Soil Desert Technologies Spa. Todos los derechos reservados. <br>
+        Este es un MVP de telemetría, se está trabajando para más funciones.
     </footer>
 
     <!-- Agregar Chart.js -->

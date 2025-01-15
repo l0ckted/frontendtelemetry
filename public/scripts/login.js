@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const csrfToken = csrfData.csrfToken;
 
             // Send login request to the backend (localhost:3000) with CSRF token in headers
-            const response = await fetch('http://localhost:3000/api/usuarios/login', {
+            const response = await fetch('https://api.desert-iot.cl/api/usuarios/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

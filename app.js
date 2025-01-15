@@ -30,7 +30,7 @@ app.post('/login', async (req, res) => {
 
   try {
     // Realiza la solicitud POST al servidor 3000
-    const response = await axios.post('http://localhost:3000/api/usuarios/login', {
+    const response = await axios.post('https://api.desert-iot.cl/api/usuarios/login', {
       email,
       contrasena
     });
@@ -88,7 +88,7 @@ Router.get('/humedad-suelo/:fechaInicio/:fechaFin/:sensor_id/:area_id/:cliente_i
 
   try {
     // Hacer la solicitud GET al servidor externo en localhost:3000
-    const apiUrl = `http://localhost:3000/api/humedad-suelo/${fechaInicio}/${fechaFin}/${sensor_id}/${area_id}/${cliente_id}`;
+    const apiUrl = `https://api.desert-iot.cl/api/humedad-suelo/${fechaInicio}/${fechaFin}/${sensor_id}/${area_id}/${cliente_id}`;
     const response = await axios.get(apiUrl);
 
     // Devolver la respuesta directamente al cliente

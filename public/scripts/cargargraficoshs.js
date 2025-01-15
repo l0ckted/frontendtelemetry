@@ -34,16 +34,25 @@ async function cargarDatosDeHumedad(sensor_id, area_id, cliente_id, fechaInicio,
             throw new Error("Fechas inválidas proporcionadas.");
         }
 
-        const apiUrl = `http://localhost:3000/api/humedad-suelo/${fechaInicio}/${fechaFin}/${sensor_id}/${area_id}/${cliente_id}`;
+        const apiUrl = `https://api.desert-iot.cl/api/humedad-suelo/${fechaInicio}/${fechaFin}/${sensor_id}/${area_id}/${cliente_id}`;
         const response = await axios.get(apiUrl);
 
-        const datosConFechasFormateadas = response.data.map((dato) => {
+        // Filtrar los datos antes de formatearlos
+        const datosFiltrados = response.data.filter((dato) => 
+            parseFloat(dato.valor_humedad) !== 0 &&
+            parseFloat(dato.valor_conductividad) !== 0 &&
+            parseFloat(dato.valor_temperatura_suelo) !== 0
+        );
+
+        // Mapear los datos filtrados y formatear las fechas
+        const datosConFechasFormateadas = datosFiltrados.map((dato) => {
             if (dato.fecha_hora) {
                 dato.fecha_hora = obtenerFechaFormateada(new Date(dato.fecha_hora));
             }
             return dato;
         });
 
+        // Almacenar los datos en IndexedDB
         await almacenarDatosEnIndexedDB("humedad", sensor_id, area_id, datosConFechasFormateadas);
 
         console.log("Datos almacenados en IndexedDB:", datosConFechasFormateadas);
@@ -51,6 +60,7 @@ async function cargarDatosDeHumedad(sensor_id, area_id, cliente_id, fechaInicio,
         console.error("Error al obtener o almacenar datos de humedad del suelo:", error);
     }
 }
+
 
 // Función para almacenar datos en IndexedDB
 async function almacenarDatosEnIndexedDB(storeName, sensor_id, area_id, datos) {

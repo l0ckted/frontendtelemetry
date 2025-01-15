@@ -191,25 +191,37 @@ async function cargarDatosDeHumedad(sensor_id, area_id, cliente_id) {
     const fechaFinFormateada = obtenerFechaFormateada(fechaFin);
 
     try {
-        const apiUrl = `http://localhost:3000/api/humedad-suelo/${fechaInicioFormateada}/${fechaFinFormateada}/${sensor_id}/${area_id}/${cliente_id}`;
+        const apiUrl = `https://api.desert-iot.cl/api/humedad-suelo/${fechaInicioFormateada}/${fechaFinFormateada}/${sensor_id}/${area_id}/${cliente_id}`;
         const response = await axios.get(apiUrl);
 
-        // Convertir las fechas al formato 'YYYY-MM-DD HH:mm:ss'
-        const datosConFechasFormateadas = response.data.map(dato => {
-            if (dato.fecha_data) {
-                dato.fecha_data = transformarFecha(dato.fecha_data); // Usar la función para verificar y transformar
-            }
-            return dato;
-        });
+        // Filtrar y transformar datos para eliminar aquellos con valores '0.00'
+        const datosValidos = response.data
+            .map(dato => {
+                if (dato.fecha_data) {
+                    dato.fecha_data = transformarFecha(dato.fecha_data); // Transformar la fecha
+                }
+                return dato;
+            })
+            .filter(dato =>
+                parseFloat(dato.valor_humedad) !== 0 &&
+                parseFloat(dato.valor_conductividad) !== 0 &&
+                parseFloat(dato.valor_temperatura_suelo) !== 0
+            );
 
-        // Almacenar los datos en IndexedDB bajo un identificador que combina sensor_id y area_id
-        await almacenarDatosEnIndexedDB('humedad', sensor_id, area_id, datosConFechasFormateadas);
-
-        console.log(datosConFechasFormateadas);
+        if (datosValidos.length > 0) {
+            // Solo almacenar datos válidos si existen
+            await almacenarDatosEnIndexedDB('humedad', sensor_id, area_id, datosValidos);
+            console.log('Datos válidos almacenados:', datosValidos);
+        } else {
+            console.log('No hay datos válidos para almacenar.');
+        }
     } catch (error) {
         console.error('Error al obtener datos de humedad del suelo:', error);
     }
 }
+
+
+
 
 // Función para actualizar la base de datos con los datos más recientes
 // Función para borrar los objetos en IndexedDB con el patrón 'sensor-{n}-area-{n}'
